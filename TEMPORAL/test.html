@@ -1,0 +1,28 @@
+<html>
+ <head>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+ </head>
+ <body> 
+    <input type='text' name='query' id='query'>
+    <button type='button' id='search'>Search</button>
+    <div id='results'></div>
+ </body>
+  <script> 
+    $(document).ready(function() {
+     $('#search').click(function() {
+       var text = $('#query').val();
+        $.ajax({
+        url: "/search",
+        type: "get",
+        data: {query: text},
+        success: function(response) {
+        $("#results").html(response.html);
+       },
+       error: function(xhr) {
+        //Do Something to handle error
+       }
+     });
+   });
+  });
+  </script>
+</html>
